@@ -9,6 +9,7 @@ function getUserChoice() {
 }
 
 let userChoice = getUserChoice();
+console.log(userChoice);
 
 /*
  * Function to get the computer's choice for rock, paper, scissors.
@@ -37,8 +38,31 @@ function convertComputerChoice() {
 }
 
 let computerChoiceText = convertComputerChoice();
+console.log(computerChoice);
 
 // Compare the computer choice to the user choice and select a winner. 
+
+function determineWinner() {
+    if (userChoice === computerChoice) {
+        return "It is a tie";
+    } else if (userChoice === "rock" && computerChoice === "paper") {
+        return "Paper beats Rock. Computer wins.";
+    } else if (userChoice === "rock" && computerChoice === "scissors") {
+        return "Rock beats Scissors. You win!";
+    } else if (userChoice === "paper" && computerChoice === "rock") {
+        return "Paper beats Rock. You win!"
+    } else if (userChoice === "paper" && computerChoice === "scissors") {
+        return "Scissors beats Paper. Computer wins.";
+    } else if (userChoice === "scissors" && computerChoice === "paper") {
+        return "Scissors beats Paper. You win!";
+    } else {
+        return "Rock beats scissors. Computer wins.";
+    }
+}
+
+let matchWinner = determineWinner(userChoice, computerChoice);
+console.log(matchWinner);
+
 // Declare the winner.
 // The game will be played to best 3 out of 5 rounds. It will repeat until humanScore or computerScore = 3. 
 // End the game letting the user know who won the game.
