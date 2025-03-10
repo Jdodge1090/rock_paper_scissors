@@ -63,6 +63,24 @@ function determineWinner() {
 let matchWinner = determineWinner(userChoice, computerChoice);
 console.log(matchWinner);
 
-// Declare the winner.
 // The game will be played to best 3 out of 5 rounds. It will repeat until humanScore or computerScore = 3. 
+
+let computerScore = 0;
+let userScore = 0;
+
+function gameScore() {
+    if (matchWinner.includes("Computer")) {
+        computerScore = ++computerScore;
+    } else if (matchWinner.includes("You")) {
+        userScore = ++userScore;
+    } else {
+
+    }
+}
+
+gameScore();
+
+console.log(computerScore);
+console.log(userScore);
+
 // End the game letting the user know who won the game.
