@@ -9,7 +9,7 @@ function getUserChoice() {
 }
 
 let userChoice = getUserChoice();
-console.log(userChoice);
+console.log(`User choice: ${userChoice}`);
 
 /*
  * Function to get the computer's choice for rock, paper, scissors.
@@ -38,7 +38,7 @@ function convertComputerChoice() {
 }
 
 let computerChoiceText = convertComputerChoice();
-console.log(computerChoice);
+console.log(`Computer choice: ${computerChoice}`);
 
 // Compare the computer choice to the user choice and select a winner. 
 
@@ -61,26 +61,35 @@ function determineWinner() {
 }
 
 let matchWinner = determineWinner(userChoice, computerChoice);
-console.log(matchWinner);
+console.log(determineWinner());
 
-// The game will be played to best 3 out of 5 rounds. It will repeat until humanScore or computerScore = 3. 
+// The game will be played to best 3 out of 5 rounds. Built a counter to begin counting userScore and computerScore
 
 let computerScore = 0;
 let userScore = 0;
 
-function gameScore() {
-    if (matchWinner.includes("Computer")) {
-        computerScore = ++computerScore;
-    } else if (matchWinner.includes("You")) {
-        userScore = ++userScore;
-    } else {
+while (computerScore < 3 && userScore < 3) {
+    let userChoice = getUserChoice();
+    console.log(`User choice: ${userChoice}`);
 
+    let computerChoice = getComputerChoice();
+    let computerChoiceText = convertComputerChoice(computerChoice);
+    console.log(`Computer choice: ${computerChoiceText}`);
+
+    let matchWinner = determineWinner(userChoice, computerChoiceText);
+    console.log(matchWinner);
+
+    if (matchWinner.includes("Computer")) {
+        computerScore++;
+    } else if (matchWinner.includes("You")) {
+        userScore++;
     }
+
+    console.log(`Current Scores - User: ${userScore}, Computer: ${computerScore}`);
 }
 
-gameScore();
-
-console.log(computerScore);
-console.log(userScore);
-
-// End the game letting the user know who won the game.
+if (userScore === 3) {
+    console.log("Congratulations! You won the game.");
+} else {
+    console.log("Sorry! The computer won the game.");
+}
