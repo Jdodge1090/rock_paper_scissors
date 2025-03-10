@@ -1,9 +1,14 @@
+/**
+ * Function to prompt the user to select Rock, Paper, or Scissors.
+ * Converts the user's input to lowercase for consistency.
+ * Returns the user's choice as a string.
+ */
+
 function getUserChoice() {
     return prompt("Select Rock, Paper or Scissors: ").toLowerCase();
 }
 
 let userChoice = getUserChoice();
-console.log(userChoice);
 
 /*
  * Function to get the computer's choice for rock, paper, scissors.
@@ -17,10 +22,22 @@ function getComputerChoice() {
 }
 
 let computerChoice = getComputerChoice(0, 2);
-console.log(computerChoice);
 
-// Get the computer's choice and store "rock", "paper", or "scissors".
-// Prompt the user to select rock, paper or scissors.
+// Convert the computer's number to rock paper or scissors. 
+
+function convertComputerChoice() {
+    if (computerChoice === 0) {
+        computerChoice = "rock";
+    } else if (computerChoice === 1) {
+        computerChoice = "paper";
+    } else {
+        computerChoice = "scissors";
+    }
+    return computerChoice;
+}
+
+let computerChoiceText = convertComputerChoice();
+
 // Compare the computer choice to the user choice and select a winner. 
 // Declare the winner.
 // The game will be played to best 3 out of 5 rounds. It will repeat until humanScore or computerScore = 3. 
