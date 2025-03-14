@@ -8,41 +8,32 @@ function getUserChoice() {
     return prompt("Select Rock, Paper or Scissors: ").toLowerCase();
 }
 
-let userChoice = getUserChoice();
-console.log(`User choice: ${userChoice}`);
-
 /*
  * Function to get the computer's choice for rock, paper, scissors.
  * Returns a random number between 0 and 2.
  */
 
 function getComputerChoice() {
-    min = Math.ceil(0);
-    max = Math.floor(2);
+   let min = Math.ceil(0);
+   let max = Math.floor(2);
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-let computerChoice = getComputerChoice(0, 2);
-
 // Convert the computer's number to rock paper or scissors. 
 
-function convertComputerChoice() {
+function convertComputerChoice(computerChoice) {
     if (computerChoice === 0) {
-        computerChoice = "rock";
+        return "rock";
     } else if (computerChoice === 1) {
-        computerChoice = "paper";
+        return "paper";
     } else {
-        computerChoice = "scissors";
+        return "scissors";
     }
-    return computerChoice;
 }
-
-let computerChoiceText = convertComputerChoice();
-console.log(`Computer choice: ${computerChoice}`);
 
 // Compare the computer choice to the user choice and select a winner. 
 
-function determineWinner() {
+function determineWinner(userChoice, computerChoice) {
     if (userChoice === computerChoice) {
         return "It is a tie";
     } else if (userChoice === "rock" && computerChoice === "paper") {
@@ -60,8 +51,6 @@ function determineWinner() {
     }
 }
 
-let matchWinner = determineWinner(userChoice, computerChoice);
-console.log(determineWinner());
 
 // The game will be played to best 3 out of 5 rounds. Built a counter to begin counting userScore and computerScore
 
