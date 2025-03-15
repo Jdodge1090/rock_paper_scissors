@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil:opsz,wght@10..72,100..900&family=Press+Start+2P&display=swap');
+
+body {
+    background: #050315;
+}
+
+h1 {
+    font-family: "Press Start 2P", system-ui;
+    justify-self: center;
+    color: #fbfbfe;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.score_board {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.score_board p {
+    font-family: "Press Start 2P", system-ui;
+    color: #fbfbfe;
+}
+
+.computer_score, .userScore {
+    margin: 0 260px;
+}
+
+.selection_display, .game_controls, .game_winner {
+    margin-top: 20px;
+    text-align: center;
+}
