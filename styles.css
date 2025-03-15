@@ -22,6 +22,7 @@ h1 {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    margin: 50px 0;
 }
 
 .score_board p {
@@ -36,4 +37,9 @@ h1 {
 .selection_display, .game_controls, .game_winner {
     margin-top: 20px;
     text-align: center;
+}
+
+button {
+    font-family: "Press Start 2P", system-ui;
+    padding: 10px;
 }

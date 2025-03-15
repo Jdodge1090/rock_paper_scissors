@@ -1,12 +1,19 @@
-/**
- * Function to prompt the user to select Rock, Paper, or Scissors.
- * Converts the user's input to lowercase for consistency.
- * Returns the user's choice as a string.
- */
+const rock = document.getElementById('rock');
+const paper = document.getElementById('paper');
+const scissors = document.getElementById('scissors');
+let userChoice = '';
 
-function getUserChoice() {
-    return prompt("Select Rock, Paper or Scissors: ").toLowerCase();
-}
+rock.addEventListener('click', () => {
+    userChoice = 'rock';
+});
+
+paper.addEventListener('click', () => {
+    userChoice = 'paper';
+});
+
+scissors.addEventListener('click', () => {
+    userChoice = 'scissors';
+});
 
 /*
  * Function to get the computer's choice for rock, paper, scissors.
@@ -54,31 +61,31 @@ function determineWinner(userChoice, computerChoice) {
 
 // The game will be played to best 3 out of 5 rounds. Built a counter to begin counting userScore and computerScore
 
-let computerScore = 0;
-let userScore = 0;
+// let computerScore = 0;
+// let userScore = 0;
 
-while (computerScore < 3 && userScore < 3) {
-    let userChoice = getUserChoice();
-    console.log(`User choice: ${userChoice}`);
+// while (computerScore < 3 && userScore < 3) {
+//     let userChoice = getUserChoice();
+//     console.log(`User choice: ${userChoice}`);
 
-    let computerChoice = getComputerChoice();
-    let computerChoiceText = convertComputerChoice(computerChoice);
-    console.log(`Computer choice: ${computerChoiceText}`);
+//     let computerChoice = getComputerChoice();
+//     let computerChoiceText = convertComputerChoice(computerChoice);
+//     console.log(`Computer choice: ${computerChoiceText}`);
 
-    let matchWinner = determineWinner(userChoice, computerChoiceText);
-    console.log(matchWinner);
+//     let matchWinner = determineWinner(userChoice, computerChoiceText);
+//     console.log(matchWinner);
 
-    if (matchWinner.includes("Computer")) {
-        computerScore++;
-    } else if (matchWinner.includes("You")) {
-        userScore++;
-    }
+//     if (matchWinner.includes("Computer")) {
+//         computerScore++;
+//     } else if (matchWinner.includes("You")) {
+//         userScore++;
+//     }
 
-    console.log(`Current Scores - User: ${userScore}, Computer: ${computerScore}`);
-}
+//     console.log(`Current Scores - User: ${userScore}, Computer: ${computerScore}`);
+// }
 
-if (userScore === 3) {
-    console.log("Congratulations! You won the game.");
-} else {
-    console.log("Sorry! The computer won the game.");
-}
+// if (userScore === 3) {
+//     console.log("Congratulations! You won the game.");
+// } else {
+//     console.log("Sorry! The computer won the game.");
+// }
