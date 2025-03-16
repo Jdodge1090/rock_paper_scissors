@@ -1,45 +1,112 @@
 @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil:opsz,wght@10..72,100..900&family=Press+Start+2P&display=swap');
 
+:root {
+    --primary-bg: #050315;
+    --primary-text: #fbfbfe;
+    --spacing-unit: clamp(0.5rem, 2vw, 2rem);
+}
+
 body {
-    background: #050315;
+    background: var(--primary-bg);
+    min-height: 100vh;
+    margin: 0;
+    padding: var(--spacing-unit);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 h1 {
     font-family: "Press Start 2P", system-ui;
-    justify-self: center;
-    color: #fbfbfe;
+    color: var(--primary-text);
+    font-size: clamp(1rem, 4vw, 2rem);
+    text-align: center;
+    margin: var(--spacing-unit) 0;
 }
 
 .header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
+    width: 100%;
+    max-width: 1200px;
 }
 
 .score_board {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
+    gap: var(--spacing-unit);
     width: 100%;
-    margin: 50px 0;
+    margin: var(--spacing-unit) 0;
+    flex-wrap: wrap;
 }
 
 .score_board p {
     font-family: "Press Start 2P", system-ui;
-    color: #fbfbfe;
+    color: var(--primary-text);
+    font-size: clamp(0.8rem, 2vw, 1.2rem);
+    margin: 0;
 }
 
 .computer_score, .userScore {
-    margin: 0 260px;
+    flex: 1;
+    text-align: center;
+    max-width: 200px;
 }
 
-.selection_display, .game_controls, .game_winner {
-    margin-top: 20px;
-    text-align: center;
+.selection_display {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-unit);
+    margin: var(--spacing-unit) 0;
+}
+
+.game_controls {
+    display: flex;
+    gap: var(--spacing-unit);
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: var(--spacing-unit) 0;
 }
 
 button {
     font-family: "Press Start 2P", system-ui;
-    padding: 10px;
+    padding: clamp(0.5rem, 2vw, 1rem) clamp(1rem, 3vw, 2rem);
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    cursor: pointer;
+    border: 2px solid var(--primary-text);
+    background: transparent;
+    color: var(--primary-text);
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: var(--primary-text);
+    color: var(--primary-bg);
+}
+
+.display {
+    background-color: var(--primary-text);
+    margin: var(--spacing-unit) auto;
+    padding: clamp(1rem, 3vw, 2rem);
+    font-family: "Press Start 2P", system-ui;
+    border-radius: 10px;
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    max-width: 80%;
+}
+
+@media (max-width: 768px) {
+    .game_controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    button {
+        width: 80%;
+        max-width: 300px;
+    }
+    
+    .selection_display {
+        flex-direction: column;
+        align-items: center;
+    }
 }

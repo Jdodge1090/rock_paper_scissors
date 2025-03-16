@@ -1,91 +1,98 @@
+// Initialize game variables
+let userChoice = '';
+let computerScore = 0;
+let userScore = 0;
+let gameInProgress = true;
+
+// Get DOM elements
 const rock = document.getElementById('rock');
 const paper = document.getElementById('paper');
 const scissors = document.getElementById('scissors');
-let userChoice = '';
+const computerScoreDisplay = document.querySelector('.computer_score p');
+const userScoreDisplay = document.querySelector('.userScore p');
+const display = document.querySelector('.display');
 
-rock.addEventListener('click', () => {
-    userChoice = 'rock';
-});
+// Add event listeners to buttons
+rock.addEventListener('click', () => playRound('rock'));
+paper.addEventListener('click', () => playRound('paper'));
+scissors.addEventListener('click', () => playRound('scissors'));
 
-paper.addEventListener('click', () => {
-    userChoice = 'paper';
-});
-
-scissors.addEventListener('click', () => {
-    userChoice = 'scissors';
-});
-
-/*
- * Function to get the computer's choice for rock, paper, scissors.
- * Returns a random number between 0 and 2.
+/**
+ * Function to get the computer's choice
+ * Returns a random number between 0 and 2
  */
-
 function getComputerChoice() {
-   let min = Math.ceil(0);
-   let max = Math.floor(2);
+    const min = Math.ceil(0);
+    const max = Math.floor(2);
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-// Convert the computer's number to rock paper or scissors. 
-
+/**
+ * Convert computer's numeric choice to string
+ */
 function convertComputerChoice(computerChoice) {
-    if (computerChoice === 0) {
-        return "rock";
-    } else if (computerChoice === 1) {
-        return "paper";
-    } else {
-        return "scissors";
-    }
+    if (computerChoice === 0) return "rock";
+    if (computerChoice === 1) return "paper";
+    return "scissors";
 }
 
-// Compare the computer choice to the user choice and select a winner. 
-
+/**
+ * Determine winner of the round
+ */
 function determineWinner(userChoice, computerChoice) {
     if (userChoice === computerChoice) {
         return "It is a tie";
-    } else if (userChoice === "rock" && computerChoice === "paper") {
-        return "Paper beats Rock. Computer wins.";
-    } else if (userChoice === "rock" && computerChoice === "scissors") {
-        return "Rock beats Scissors. You win!";
-    } else if (userChoice === "paper" && computerChoice === "rock") {
-        return "Paper beats Rock. You win!"
-    } else if (userChoice === "paper" && computerChoice === "scissors") {
-        return "Scissors beats Paper. Computer wins.";
-    } else if (userChoice === "scissors" && computerChoice === "paper") {
-        return "Scissors beats Paper. You win!";
+    } else if (
+        (userChoice === "rock" && computerChoice === "scissors") ||
+        (userChoice === "paper" && computerChoice === "rock") ||
+        (userChoice === "scissors" && computerChoice === "paper")
+    ) {
+        return `You chose ${userChoice} and computer chose ${computerChoice}. You win!`;
     } else {
-        return "Rock beats scissors. Computer wins.";
+        return `The computer chose ${computerChoice} and you chose ${userChoice}. Computer wins.`;
     }
 }
 
+/**
+ * Update the score display
+ */
+function updateScores() {
+    computerScoreDisplay.textContent = computerScore;
+    userScoreDisplay.textContent = userScore;
+}
 
-// The game will be played to best 3 out of 5 rounds. Built a counter to begin counting userScore and computerScore
+/**
+ * Play a single round of the game
+ */
+function playRound(choice) {
+    if (!gameInProgress) return;
 
-// let computerScore = 0;
-// let userScore = 0;
+    userChoice = choice;
+    console.log(`User choice: ${userChoice}`);
 
-// while (computerScore < 3 && userScore < 3) {
-//     let userChoice = getUserChoice();
-//     console.log(`User choice: ${userChoice}`);
+    const computerChoice = getComputerChoice();
+    const computerChoiceText = convertComputerChoice(computerChoice);
+    console.log(`Computer choice: ${computerChoiceText}`);
 
-//     let computerChoice = getComputerChoice();
-//     let computerChoiceText = convertComputerChoice(computerChoice);
-//     console.log(`Computer choice: ${computerChoiceText}`);
+    const matchWinner = determineWinner(userChoice, computerChoiceText);
+    console.log(matchWinner);
+    display.textContent = matchWinner;
 
-//     let matchWinner = determineWinner(userChoice, computerChoiceText);
-//     console.log(matchWinner);
+    if (matchWinner.includes("You win")) {
+        userScore++;
+    } else if (matchWinner.includes("Computer wins")) {
+        computerScore++;
+    }
 
-//     if (matchWinner.includes("Computer")) {
-//         computerScore++;
-//     } else if (matchWinner.includes("You")) {
-//         userScore++;
-//     }
+    updateScores();
 
-//     console.log(`Current Scores - User: ${userScore}, Computer: ${computerScore}`);
-// }
+    if (userScore === 3 || computerScore === 3) {
+        gameInProgress = false;
+        const gameWinner = userScore === 3 ? 
+            "Congratulations! You won the game! Refresh the page to play again.": 
+            "Game Over! Computer wins the game! Refresh the page to play again.";
+        display.textContent = gameWinner;
+        console.log(gameWinner);
+    }
+}
 
-// if (userScore === 3) {
-//     console.log("Congratulations! You won the game.");
-// } else {
-//     console.log("Sorry! The computer won the game.");
-// }
